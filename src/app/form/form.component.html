@@ -1,0 +1,36 @@
+<form #Form="ngForm" (submit)="onSubmit()">
+  <div>
+    <label for="title-order">Title</label>
+    <input id="title-order" name="title-order" type="text" [(ngModel)]="model.title" #title="ngModel" required
+      minlength="3" maxlength="20">
+    <div *ngIf="title.errors">
+      <span *ngIf="title.errors?.['required']">Le titre est requis</span>
+      <span *ngIf="title.errors?.['minlength']">Le titre doit faire au moins 3 caractères</span>
+    </div>
+  </div>
+  <div>
+    <label for="quantity-order">Quantité</label>
+    <input [(ngModel)]="model.quantity" #qty="ngModel" id="quantity-order" name="quantity-order" type="number" required>
+    <div *ngIf="qty.errors">
+      <span *ngIf="qty.errors?.['required']">La quantité est requise</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="date-order">Date de commande</label>
+    <input [(ngModel)]="model.date" id="date-order" name="date-order" type="date" required>
+  </div>
+
+  <div>
+    <label for="contact-order">Contact</label>
+    <input [(ngModel)]="model.contact" #contact="ngModel" id="contact-order" name="contact-order" type="email" required
+      email>
+    <div *ngIf="contact.errors">
+      <span *ngIf="contact.errors?.['required']">Le contact est requis</span>
+      <span *ngIf="contact.errors?.['email']">Le contact doit être un email</span>
+    </div>
+  </div>
+
+  <button type="reset">Restaurer</button>
+  <button type="submit">Sauvegarder</button>
+</form>
